@@ -63,7 +63,7 @@ namespace ScoreManagement
 
             #endregion
 
-            var sql = $"select * from AccountInfo where UserNo = {this.username.Text} and Password = {this.userpwd.Text}";
+            var sql = $"select * from AccountInfo where UserNo = '{this.username.Text}' and Password = '{this.userpwd.Text}'";
             DbHandle db = new DbHandle();
             var res = db.GetLoginDataBySql(sql);
             if (res.Tables[0]?.Rows == null || res.Tables[0].Rows.Count == 0)
