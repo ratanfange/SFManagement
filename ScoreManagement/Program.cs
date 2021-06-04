@@ -18,7 +18,7 @@ namespace ScoreManagement
             {
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new Form1());
+                Application.Run(new UserLogin());
             }
             catch (Exception ex)
             {

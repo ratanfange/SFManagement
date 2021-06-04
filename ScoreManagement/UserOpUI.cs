@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -11,9 +12,9 @@ using System.Windows.Forms;
 
 namespace ScoreManagement
 {
-    public partial class AddUserUI : Form
+    public partial class UserOpUI : Form
     {
-        public AddUserUI(string u1 = null,string u2 = null,string u3 = null,string u4 = null)
+        public UserOpUI(string u1 = null,string u2 = null,string u3 = null,string u4 = null)
         {
             InitializeComponent();
             _userNo = u1;
@@ -48,6 +49,8 @@ namespace ScoreManagement
             this.UserName.Text = _userName;
             this.UserClass.Text = _userClass;
             this.Tel.Text = _tel;
+
+
         }
 
         /// <summary>
@@ -58,7 +61,7 @@ namespace ScoreManagement
         private void button1_Click(object sender, EventArgs e)
         {
             //保存
-            DbHandle dbHandle = new DbHandle();
+            DbHandle _dbHandle = new DbHandle();
 
             if (isAdd)
             {
@@ -68,8 +71,8 @@ namespace ScoreManagement
                     return;
                 }
 
-                var sql = $"select UserNo,UserName,UserClass,Tel from UserInfo where UserNo = {this.UserNo.Text}";
-                var res = dbHandle.GetUserInfoData(sql);
+                var sql = $"select UserNo,UserName,UserClass,Tel from UserInfo where UserNo = '{this.UserNo.Text}'";
+                var res = _dbHandle.GetUserInfoData(sql);
                 if (res.Tables[0].Rows.Count > 0)
                 {
                     MessageBox.Show("该学号已存在！");
@@ -100,7 +103,7 @@ namespace ScoreManagement
             #endregion
 
 
-            dbHandle.AddOrUpdateUserInfoData(isAdd,new UserModel 
+            _dbHandle.AddOrUpdateUserInfoData(isAdd,new UserModel 
             {
                 UserNo = this.UserNo.Text,
                 UserName = this.UserName.Text,

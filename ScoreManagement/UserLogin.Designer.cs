@@ -1,6 +1,6 @@
 ﻿namespace ScoreManagement
 {
-    partial class Form1
+    partial class UserLogin
     {
         /// <summary>
         /// 必需的设计器变量。
@@ -34,6 +34,7 @@
             this.userpwd = new System.Windows.Forms.TextBox();
             this.username = new System.Windows.Forms.TextBox();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.SuspendLayout();
             // 
             // label1
@@ -57,6 +58,7 @@
             this.button1.Text = "登陆";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.MouseHover += new System.EventHandler(this.button1_MouseHover);
             // 
             // label3
             // 
@@ -91,6 +93,8 @@
             this.username.Name = "username";
             this.username.Size = new System.Drawing.Size(287, 21);
             this.username.TabIndex = 3;
+            this.username.Enter += new System.EventHandler(this.username_Enter);
+            this.username.Leave += new System.EventHandler(this.username_Leave);
             // 
             // linkLabel1
             // 
@@ -103,7 +107,15 @@
             this.linkLabel1.Text = "忘记密码？";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
-            // Form1
+            // backgroundWorker1
+            // 
+            this.backgroundWorker1.WorkerReportsProgress = true;
+            this.backgroundWorker1.WorkerSupportsCancellation = true;
+            this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
+            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
+            this.backgroundWorker1.DoWork += this.backgroundWorker1_DoWork;
+            // 
+            // UserLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -114,7 +126,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
-            this.Name = "Form1";
+            this.Name = "UserLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "系统登陆";
             this.ResumeLayout(false);
@@ -130,6 +142,7 @@
         private System.Windows.Forms.TextBox userpwd;
         private System.Windows.Forms.TextBox username;
         private System.Windows.Forms.LinkLabel linkLabel1;
+        public System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
 

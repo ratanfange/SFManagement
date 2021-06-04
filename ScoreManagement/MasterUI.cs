@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -15,10 +16,12 @@ namespace ScoreManagement
         public MasterUI()
         {
             InitializeComponent();
+            hasPro = ConfigurationManager.AppSettings["Admin"] == "9";
         }
 
         private DbHandle dbHandle = new DbHandle();
         private DataSet dataSet = new DataSet();
+        private bool hasPro = false;
 
         /// <summary>
         /// 退出系统
@@ -50,7 +53,7 @@ namespace ScoreManagement
         /// <param name="e"></param>
         private void button2_Click(object sender, EventArgs e)
         {
-            AddUserUI addUserUI = new AddUserUI();
+            UserOpUI addUserUI = new UserOpUI();
             addUserUI.Show();
             this.Hide();
         }
@@ -83,11 +86,31 @@ namespace ScoreManagement
         /// <param name="e"></param>
         private void Master_Load(object sender, EventArgs e)
         {
+            this.label2.Text = ConfigurationManager.AppSettings["UserName"];
             var sql = @"select top 100 UserNo,UserName,UserClass,Tel,CreateDate from UserInfo";
+            if (!hasPro)
+            {
+                sql += $" where UserNo = '{ConfigurationManager.AppSettings["UserNo"]}'";
+            }
             dataSet = dbHandle.GetUserInfoData(sql);
 
             dataGridView1.DataSource = dataSet;
             dataGridView1.DataMember = "ds";
+
+            if (!hasPro) 
+            {
+                // 隐藏查询按钮
+                this.button1.Enabled = false;
+                this.button1.Visible = false;
+
+                // 隐藏新增按钮
+                this.button2.Enabled = false;
+                this.button2.Visible = false;
+
+                // 隐藏删除按钮
+                this.button4.Enabled = false;
+                this.button4.Visible = false;
+            }
         }
 
         /// <summary>
@@ -108,7 +131,7 @@ namespace ScoreManagement
             else
             {
                 var selectRow = this.dataGridView1.Rows[this.dataGridView1.CurrentCell.RowIndex];
-                AddUserUI addUserUI = new AddUserUI(selectRow.Cells["UserNo"].Value.ToString(), 
+                UserOpUI addUserUI = new UserOpUI(selectRow.Cells["UserNo"].Value.ToString(), 
                     selectRow.Cells["UserName"].Value.ToString(), selectRow.Cells["UserClass"].Value.ToString(), selectRow.Cells["Tel"].Value.ToString());
                 addUserUI.Show();
                 this.Hide();
@@ -160,6 +183,13 @@ namespace ScoreManagement
         private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             button3_Click(sender, null);
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            UserLogin form1 = new UserLogin();
+            form1.Show();
+            this.Close();
         }
     }
 }

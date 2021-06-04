@@ -26,19 +26,9 @@ namespace ScoreManagement
         /// <param name="username"></param>
         /// <param name="pwd"></param>
         /// <returns></returns>
-        public DataSet GetLoginDataBySql(string sql) 
+        public DataSet GetDataBySql(string sql) 
         {
-            //if (string.IsNullOrWhiteSpace(sql))
-            //    return -1;
-
             conn.Open();
-            //SqlTransaction st = conn.BeginTransaction();
-            //SqlCommand cmd = new SqlCommand(sql, conn);
-            //SqlParameter[] paras = {
-            //        new SqlParameter("@username", username),
-            //        new SqlParameter("@pwd", pwd)
-            //    };
-            ///cmd.Parameters.AddRange(paras);
 
             try
             {
@@ -52,12 +42,6 @@ namespace ScoreManagement
                 sda.Fill(dataSet, "ds");
 
                 return dataSet;
-                //if (!dr.HasRows)//判断dr中有没有数据
-                //{
-                //    return -1;
-                //}
-
-                //return 0;
             }
             catch (Exception)
             {
@@ -65,10 +49,23 @@ namespace ScoreManagement
             }
             finally
             {
-                //cmd.Dispose();//销毁cmd
                 conn.Close();//关闭数据库连接
             }
             
+        }
+
+        /// <summary>
+        /// 添加更新数据
+        /// </summary>
+        /// <param name="isAdd"></param>
+        /// <param name="userModel"></param>
+        public void UpdateLoginInfo(string username, string password)
+        {
+            string addOrUpdateSql = $"update AccountInfo set Password = N'{password}' " +
+                                $" where UserNo = N'{username}'";
+
+            ExecuteSql(addOrUpdateSql);
+
         }
 
         /// <summary>
@@ -111,7 +108,7 @@ namespace ScoreManagement
             {
                 //update
                 addOrUpdateSql = $"update UserInfo set UserName = N'{userModel.UserName}',UserClass = N'{userModel.UserClass}',Tel = '{userModel.Tel}',ModifyDate = '{DateTime.Now.ToString()}' " +
-                                $" where UserNo = {userModel.UserNo}";
+                                $" where UserNo = '{userModel.UserNo}'";
 
             }
 
@@ -125,10 +122,14 @@ namespace ScoreManagement
         /// <param name="userNo"></param>
         public void DeletUserInfoData(string userNo)
         {
-            var sql = $"delete from UserInfo where UserNo = {userNo}";
+            var sql = $"delete from UserInfo where UserNo = '{userNo}'";
             ExecuteSql(sql);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sql"></param>
         private void ExecuteSql(string sql)
         {
             conn.Open();

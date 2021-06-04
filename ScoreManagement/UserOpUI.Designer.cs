@@ -1,6 +1,6 @@
 ﻿namespace ScoreManagement
 {
-    partial class AddUserUI
+    partial class UserOpUI
     {
         /// <summary>
         /// Required designer variable.
@@ -43,28 +43,28 @@
             // 
             // UserNo
             // 
-            this.UserNo.Location = new System.Drawing.Point(197, 112);
+            this.UserNo.Location = new System.Drawing.Point(206, 94);
             this.UserNo.Name = "UserNo";
             this.UserNo.Size = new System.Drawing.Size(100, 21);
             this.UserNo.TabIndex = 0;
             // 
             // UserName
             // 
-            this.UserName.Location = new System.Drawing.Point(197, 166);
+            this.UserName.Location = new System.Drawing.Point(206, 148);
             this.UserName.Name = "UserName";
             this.UserName.Size = new System.Drawing.Size(100, 21);
             this.UserName.TabIndex = 1;
             // 
             // UserClass
             // 
-            this.UserClass.Location = new System.Drawing.Point(197, 227);
+            this.UserClass.Location = new System.Drawing.Point(206, 209);
             this.UserClass.Name = "UserClass";
             this.UserClass.Size = new System.Drawing.Size(100, 21);
             this.UserClass.TabIndex = 2;
             // 
             // Tel
             // 
-            this.Tel.Location = new System.Drawing.Point(197, 285);
+            this.Tel.Location = new System.Drawing.Point(206, 267);
             this.Tel.Name = "Tel";
             this.Tel.Size = new System.Drawing.Size(100, 21);
             this.Tel.TabIndex = 3;
@@ -72,7 +72,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(104, 121);
+            this.label1.Location = new System.Drawing.Point(113, 103);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(29, 12);
             this.label1.TabIndex = 4;
@@ -81,7 +81,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(104, 175);
+            this.label2.Location = new System.Drawing.Point(113, 157);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(29, 12);
             this.label2.TabIndex = 5;
@@ -90,7 +90,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(104, 236);
+            this.label3.Location = new System.Drawing.Point(113, 218);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(29, 12);
             this.label3.TabIndex = 6;
@@ -99,7 +99,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(104, 294);
+            this.label4.Location = new System.Drawing.Point(113, 276);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(29, 12);
             this.label4.TabIndex = 7;
@@ -116,16 +116,18 @@
             // 
             // button1
             // 
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button1.Location = new System.Drawing.Point(250, 381);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 9;
-            this.button1.Text = "确认";
+            this.button1.Text = "保存";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
+            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button2.Location = new System.Drawing.Point(67, 381);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
@@ -134,7 +136,7 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // AddUserUI
+            // UserOpUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -150,7 +152,7 @@
             this.Controls.Add(this.UserClass);
             this.Controls.Add(this.UserName);
             this.Controls.Add(this.UserNo);
-            this.Name = "AddUserUI";
+            this.Name = "UserOpUI";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AddUserUI";
             this.Load += new System.EventHandler(this.AddUserUI_Load);
